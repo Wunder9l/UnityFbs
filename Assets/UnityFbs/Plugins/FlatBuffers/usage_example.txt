@@ -1,0 +1,3 @@
+# To generate .cs for file *.fbs:
+flatc -n -I 'C:\Users\vvart\Documents\Projects\Unity\DarkestSmth\Assets\Scripts' --gen-onefile GameStateType.fbs
+

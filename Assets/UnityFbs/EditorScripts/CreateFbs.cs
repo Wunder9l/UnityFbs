@@ -40,11 +40,6 @@ namespace UnityFbs.EditorScripts {
 
         private static void CreatFbsFile(string fullPath) {
             Debug.Log("Creating file: " + fullPath);
-            //FileStream fs = File.Create(fullPath);
-            //fs.Close();
-            //fs.Dispose();
-            //AssetDatabase.Refresh();
-            //Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(fullPath);
             ProjectWindowUtil.CreateAssetWithContent(fullPath, FBS_EXAMPLE_CONTENT);
         }
 

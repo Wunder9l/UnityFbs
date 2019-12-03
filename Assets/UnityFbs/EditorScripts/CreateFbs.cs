@@ -5,6 +5,7 @@ using UnityFbs.EditorScripts.Settings;
 
 namespace UnityFbs.EditorScripts {
     public class CreateFbs : ScriptableWizard {
+        [MenuItem("Assets/Create/FlatBuffers message")]
         [MenuItem("Assets/UnityFbs/Create flatbuffers message here")]
         static void CreateFbsMessage() {
             CreateFbsFile();

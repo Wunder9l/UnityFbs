@@ -32,6 +32,16 @@ namespace UnityFbs.EditorScripts {
             return CheckFbsMessageSelected();
         }
 
+        [MenuItem("Assets/UnityFbs/Generate C++ definition")]
+        private static void UnityFbsGenerateCppDefinition() {
+            GenerateDefinition(GeneratedOutputEnum.cpp);
+        }
+
+        [MenuItem("Assets/UnityFbs/Generate C++ definition", true)]
+        private static bool UnityFbsGenerateCppDefinitionValidation() {
+            return CheckFbsMessageSelected();
+        }
+
         private static void GenerateDefinition(GeneratedOutputEnum target) {
             var files = GetSelectedFbsFiles();
             string fileOrFiles = (files.Count == 1) ? "file" : "files";

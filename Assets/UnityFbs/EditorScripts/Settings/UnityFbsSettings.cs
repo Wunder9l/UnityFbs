@@ -57,6 +57,13 @@ namespace UnityFbs.EditorScripts.Settings {
             return "-I Assets";
         }
 
+        public static void SetFlatcCompiler(string flatc) {
+            var settings = GetSerializedSettings();
+            var property = settings.FindProperty("flatcPath");
+            property.stringValue = flatc;
+            settings.ApplyModifiedProperties();
+        }
+
         public static void SetIncludeDirectory(string dir) {
             var settings = GetSerializedSettings();
             SetIncludeDirectory(dir, settings.FindProperty("csAdditionalArguments"));

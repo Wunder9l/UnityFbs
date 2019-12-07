@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityFbs.EditorScripts.Settings;
@@ -26,6 +27,19 @@ namespace UnityFbs.EditorScripts {
         [MenuItem("Assets/UnityFbs/Set as include root", true)]
         private static bool SetAsIncludeRootValidation() {
             return GetSelectedDirectory() != null;
+        }
+
+        [MenuItem("Assets/UnityFbs/Set as flatc-compiler file")]
+        static void SetFlatcCompiler() {
+            var files = GetSelectedFiles();
+            if (files.Count == 1) {
+                UnityFbsSettings.SetFlatcCompiler(files[0]);
+            }
+        }
+
+        [MenuItem("Assets/UnityFbs/Set as flatc-compiler file", true)]
+        private static bool SetFlatcCompilerValidation() {
+            return GetSelectedFiles().Count == 1;
         }
 
         public static void CreateFbsFile() {
@@ -61,6 +75,16 @@ namespace UnityFbs.EditorScripts {
                 }
             }
             return null;
+        }
+        public static List<string> GetSelectedFiles() {
+            List<string> files = new List<string>();
+            foreach (UnityEngine.Object obj in Selection.GetFiltered(typeof(UnityEngine.Object), SelectionMode.Assets)) {
+                string path = AssetDatabase.GetAssetPath(obj);
+                if (!string.IsNullOrEmpty(path) && File.Exists(path)) {
+                    files.Add(path);
+                }
+            }
+            return files;
         }
 
         private const string FBS_EXAMPLE_CONTENT =

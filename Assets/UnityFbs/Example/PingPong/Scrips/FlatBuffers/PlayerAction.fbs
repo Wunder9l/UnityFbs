@@ -1,0 +1,9 @@
+﻿include "MoveDirection.fbs";
+
+namespace PingPong;
+
+table PlayerAction {
+  move_direction:MoveDirection;
+}
+
+root_type PlayerAction;

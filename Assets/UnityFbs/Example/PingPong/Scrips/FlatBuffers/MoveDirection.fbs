@@ -1,0 +1,2 @@
+﻿namespace PingPong;
+enum MoveDirection:byte { Up, Down, None }

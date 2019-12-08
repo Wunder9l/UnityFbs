@@ -1,0 +1,15 @@
+﻿namespace PingPong;
+
+struct Vec3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+table BallCoordinates {
+  position:Vec3;
+  direction:Vec3;
+  speed:float;
+}
+
+root_type BallCoordinates;

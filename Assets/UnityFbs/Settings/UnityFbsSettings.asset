@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flatcPath: Assets/UnityFbs/Plugins/FlatBuffers/Windows/flatc.exe
   csAdditionalArguments:
-  - -I Assets
+  - -I Assets/UnityFbs/Example/PingPong/Scrips/FlatBuffers
   pythonAdditionalArguments:
-  - -I Assets
+  - -I Assets/UnityFbs/Example/PingPong/Scrips/FlatBuffers
   cppAdditionalArguments:
-  - -I Assets
+  - -I Assets/UnityFbs/Example/PingPong/Scrips/FlatBuffers

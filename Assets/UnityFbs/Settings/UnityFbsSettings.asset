@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f082536a0b75786499be1391d46e19e7, type: 3}
   m_Name: UnityFbsSettings
   m_EditorClassIdentifier: 
-  flatcPath: Assets/UnityFbs/Plugins/FlatBuffers/Windows/flatc.exe
+  flatcPath: Assets/UnityFbs/Plugins/FlatBuffers/FlatcCompillersForPlatforms/Windows/flatc.exe
   csAdditionalArguments:
   - -I Assets/UnityFbs/Example/PingPong/Scrips/FlatBuffers
   pythonAdditionalArguments:

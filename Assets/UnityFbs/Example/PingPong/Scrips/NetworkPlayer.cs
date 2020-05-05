@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine;
 using PingPong;
+using System;
 
 public class NetworkPlayer : MonoBehaviour {
     // Start is called before the first frame update
@@ -15,11 +16,18 @@ public class NetworkPlayer : MonoBehaviour {
     public Transform player;
     public PingPongGame game;
 
+    public bool IsReady() {
+        using (WWW www = new WWW($"http://{host}/")) {
+            return www.isDone;
+        }
+    }
+
     public void Connect(string host) {
         this.host = host;
     }
     private void Start() {
         game.onGameStart += OnGameStart;
+        game.computerPlayer = this;
     }
     public void OnGameStart() {
         StopAllCoroutines();
@@ -40,7 +48,13 @@ public class NetworkPlayer : MonoBehaviour {
         while (game.isGameRunning) {
             using (WWW www = new WWW($"http://{host}/next_action/", GetPostData())) {
                 yield return www;
-                HandleMessage(www.bytes);
+                if (www.bytes != null) {
+                    try {
+                        HandleMessage(www.bytes);
+                    } catch (Exception exc) {
+                        Debug.LogWarning($"Exception on handling message from server: {exc.Message}");
+                    }
+                }
             }
         }
     }

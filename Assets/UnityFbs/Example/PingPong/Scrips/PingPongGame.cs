@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PingPongGame : MonoBehaviour {
     public Transform player;
@@ -9,18 +11,32 @@ public class PingPongGame : MonoBehaviour {
     public float playerLimitY = 2f;
     public delegate void OnGameStartCallback();
     public OnGameStartCallback onGameStart;
+    public NetworkPlayer computerPlayer;
+    private Text textBox;
 
+    private void Awake() {
+        textBox = GameObject.Find("TextBox").GetComponent<Text>();
+    }
     public void StartGame() {
+        PrintMessage("");
+        if (computerPlayer?.IsReady() != true) {
+            PrintMessage("Computer player is not ready. Have you started server?");
+            return;
+        }
         Reset(0);
         isGameRunning = true;
         Run();
         onGameStart?.Invoke();
     }
 
+    private void PrintMessage(string message) {
+        textBox.text = message;
+    }
+
     void Run() {
         ball.GetComponent<Rigidbody>().WakeUp();
-        Vector2 direction = new Vector2(1, Random.Range(1.5f, -1.5f));
-        if (Random.Range(0, 2) == 1) direction.x *= -1;
+        Vector2 direction = new Vector2(1, UnityEngine.Random.Range(1.5f, -1.5f));
+        if (UnityEngine.Random.Range(0, 2) == 1) direction.x *= -1;
         ball.GetComponent<Rigidbody>().velocity = direction * 3.5f; // .AddForce(direction * startBallSpeed);
     }
     void Update() {
